@@ -24,7 +24,7 @@ class LogData:
         self.micros=int(strMicros,16)
         if(strMicros.startswith('-') and self.micros!=-1):
             print("Dataset not clear (-), parse in java spliter first",file=sys.stderr);
-        self.date=datetime.datetime.fromtimestamp(int(strDate)/1000)
+        self.date=datetime.datetime.fromtimestamp(int(strDate)/1000, tz=datetime.timezone.utc)
         self.deltaMicros=int(strDelta)
 
 class LogPacket:

@@ -38,6 +38,6 @@ class DataReader:
         path = './data/sets/'+ self.cfg.dataset
         print ("Reading DataSet: "+path)
 
-        for filename in os.listdir(path):
+        for filename in sorted(os.listdir(path)):
             self.readFileContents (path+"/"+    filename)
 
