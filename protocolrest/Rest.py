@@ -7,7 +7,9 @@ class RestProtocol(Protocol):
         self.url ="http://"+cfg.server+":9090/api/addPacket"
         #todo change port
 
+
     def sendPacket(self,parsedPacket:ParsedPacket):
+        super().sendPacket(parsedPacket)
         tmp = "\"date\": \"{}\",\"tvSeconds\": {},\"bluraySeconds\": {},\"appleTvSeconds\": {},\"ipTvSeconds\":  {}"
         json = tmp.format(parsedPacket.date.isoformat(),parsedPacket.tv,parsedPacket.bluray,parsedPacket.appleTv,parsedPacket.ipTv)
 

@@ -11,6 +11,7 @@ class ProcessBasic(PacketReaderCallBack):
     def __init__(self, ann:libfann.neural_net,callback:Protocol=None):
         self.ann=ann
         self.callback=callback
+        self.packets=0;
 
 
     def getMagnitude(self,fft:numpy.fft, freq):
@@ -37,6 +38,7 @@ class ProcessBasic(PacketReaderCallBack):
 
 
     def pushLogPacket(self, logPacket:LogPacket):
+        self.packets+=1
         data0=self.proccesSamples(logPacket, 0)
         data3=self.proccesSamples(logPacket, 3)
         data6=self.proccesSamples(logPacket, 6)
@@ -52,3 +54,6 @@ class ProcessBasic(PacketReaderCallBack):
             out[i]=(res0[i]+res3[i]+res6[i]+res9[i])/4
         parsedPacket= ParsedPacket(logPacket.packets[0].date,out)
         if self.callback!=None : self.callback.sendPacket(parsedPacket)
+
+    def printPackets(self):
+        print("Packets: " + str(self.packets))

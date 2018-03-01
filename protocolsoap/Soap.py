@@ -8,6 +8,7 @@ class SoapProtocol(Protocol):
         #todo change port
 
     def sendPacket(self,parsedPacket:ParsedPacket):
+        super().sendPacket(parsedPacket)
         tmp = "\"date\": \"{}\",\"tvSeconds\": {},\"bluraySeconds\": {},\"appleTvSeconds\": {},\"ipTvSeconds\":  {}"
 
         tmp='''

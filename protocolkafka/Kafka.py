@@ -25,6 +25,7 @@ class KafkaProtocol(Protocol):
         self.producer=kafka.KafkaProducer(bootstrap_servers=endpoints)
 
     def sendPacket(self,parsedPacket:ParsedPacket):
+        super().sendPacket(parsedPacket)
         tmp = "\"date\": \"{}\",\"tv\": {},\"bluray\": {},\"appleTv\": {},\"ipTv\":  {}"
         json = tmp.format(parsedPacket.date.isoformat(),parsedPacket.tv,parsedPacket.bluray,parsedPacket.appleTv,parsedPacket.ipTv)
 
@@ -35,5 +36,6 @@ class KafkaProtocol(Protocol):
 
 
     def close(self):
-        self.producer.flush()
+        self.producer.flush() #Waits until all messages are sent (ACK)
+        super().close()
         self.producer.close()

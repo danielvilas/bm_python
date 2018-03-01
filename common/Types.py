@@ -72,9 +72,12 @@ class PacketReaderCallBack:
         return
 
 class Protocol:
+    sentMessages=0;
     def sendPacket(self,parsedPacket:ParsedPacket):
+        self.sentMessages+=1;
         return
     def initProtocol(self,cfg:Cfg):
         return
     def close(self):
+        print("Messages: "+str(self.sentMessages))
         return

@@ -10,9 +10,11 @@ class DataReader:
         self.cfg = cfg;
         self.i=0
         self.callback=cb;
+        self.files =0;
 
     def readFileContents(self,filename):
         print(filename)
+        self.files+=1;
         #if(self.i==0):
         #   self.i=1;
         #   return;
@@ -40,4 +42,7 @@ class DataReader:
 
         for filename in sorted(os.listdir(path)):
             self.readFileContents (path+"/"+    filename)
+
+    def printFiles(self):
+        print("Files: "+str(self.files))
 
