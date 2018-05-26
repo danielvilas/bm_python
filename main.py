@@ -11,7 +11,7 @@ client=None
 if "MQTT" == args.protocol: client= Mqtt.MqttProtocol()
 if "KAFKA"== args.protocol: client= Kafka.KafkaProtocol()
 if "REST"== args.protocol: client= Rest.RestProtocol()
-if "SOAP"== args.protocol: client= Soap.SoapProtocol()
+if "WS"== args.protocol: client= Soap.SoapProtocol()
 
 bmpyton = bmpyton.BmPyton(args,client)
 bmpyton.read()
